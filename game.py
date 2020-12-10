@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 class Game():
     def __init__(self):
@@ -31,6 +32,12 @@ class Wall(Tile):
 class Hero(Tile):
     def __init__(self, testBoxX, testBoxY,image):
         super().__init__(testBoxX, testBoxY,image)
+        self.HP = 20 + 3 * random.randint(1,6)
+        self.DP = 2 * random.randint(1,6)
+        self.SP = 5 + random.randint(1,6)
+
+    def draw(self, canvas):
+        canvas.create_image(self.testBoxX, self.testBoxY, anchor=NW, image = self.image)
 
    
 

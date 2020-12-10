@@ -1,6 +1,6 @@
 from tkinter import *
 
-from game import Game, Floor, Wall
+from game import Game, Floor, Wall, Hero
 import matrix as m
       
 def main():
@@ -9,6 +9,7 @@ def main():
     canvas = Canvas(root, width=600, height=600)
     floor = PhotoImage(file="images/floor.png")
     wall = PhotoImage(file="images/wall.png")
+    hero_down = PhotoImage(file="images/hero-down.png")
     
     game = Game()
 
@@ -26,7 +27,8 @@ def main():
             else:
                 tile = Wall(i*60,j*60, wall)
                 game.add_tiles(tile)
-        
+    
+    hero = Hero(0,0,hero_down) 
 
 # Create a function that can be called when a key pressing happens
     def on_key_press(e):
@@ -50,7 +52,7 @@ def main():
     for tile in game.tiles:
         game.draw(canvas)
     
-
+    hero.draw(canvas)
     root.mainloop()
 
 
