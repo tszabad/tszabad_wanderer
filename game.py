@@ -28,6 +28,9 @@ class Wall(Tile):
     def __init__(self, testBoxX, testBoxY,image):
         super().__init__(testBoxX, testBoxY,image)
 
+class Hero(Tile):
+    def __init__(self, testBoxX, testBoxY,image):
+        super().__init__(testBoxX, testBoxY,image)
 
    
 
