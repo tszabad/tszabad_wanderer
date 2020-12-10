@@ -40,7 +40,7 @@ class Hero(Tile):
     def draw(self, canvas):
         canvas.create_image(self.testBoxX, self.testBoxY, anchor=NW, image = self.image)
    
-    @property
+   
     def get_coordinates(self):
         return self.testBoxX, self.testBoxY
 

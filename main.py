@@ -34,21 +34,34 @@ def main():
     
     hero = Hero(0,0,hero_down) 
 # Create a function that can be called when a key pressing happens
+    
+    
     def on_key_press(e):
-        if e.keycode == 83:  #down
+        def coords():
+            x, y = hero.get_coordinates()
+            x, y = int(x/60), int(y/60)
+            return x, y
+
+        if e.keycode == 83 and m.matrix[coords()[1]+1][coords()[0]] != 1 and coords()[1]<=9:  #down
             hero.set_coordinatesY(60)
             hero.set_image(hero_down)
-        elif e.keycode == 87:   #up
+            
+        elif e.keycode == 87 and m.matrix[coords()[1]-1][coords()[0]] != 1 and coords()[1]>0:   #up
             hero.set_coordinatesY(-60)
             hero.set_image(hero_up)
-        elif e.keycode == 65:     #left
+            
+        elif e.keycode == 65 and m.matrix[coords()[1]][coords()[0]-1] != 1 and coords()[0]>0:     #left
             hero.set_coordinatesX(-60)
             hero.set_image(hero_left)
-        elif e.keycode == 68:   #right
+            
+        elif e.keycode == 68 and m.matrix[coords()[1]][coords()[0]+1] != 1 and coords()[0]<=9:   #right
             hero.set_coordinatesX(60)
             hero.set_image(hero_right)
+        
         game.draw(canvas)
         hero.draw(canvas)
+        coords()
+        
 
 # Tell the canvas that we prepared a function that can deal with the key press events
     canvas.bind("<KeyPress>", on_key_press)
