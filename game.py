@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 
+
 class Game():
     def __init__(self):
         self.tiles = []
@@ -38,6 +39,11 @@ class Hero(Tile):
 
     def draw(self, canvas):
         canvas.create_image(self.testBoxX, self.testBoxY, anchor=NW, image = self.image)
+
+    
+
+
+       
 
    
 
