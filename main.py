@@ -7,10 +7,13 @@ def main():
     root = Tk()
     root.title("Tom's wanderer game")
     canvas = Canvas(root, width=600, height=600)
-    
+
     floor = PhotoImage(file="images/floor.png")
     wall = PhotoImage(file="images/wall.png")
     hero_down = PhotoImage(file="images/hero-down.png")
+    hero_up = PhotoImage(file="images/hero-up.png")
+    hero_left = PhotoImage(file="images/hero-left.png")
+    hero_right = PhotoImage(file="images/hero-right.png")
     
     game = Game()
 
@@ -30,17 +33,20 @@ def main():
                 game.add_tiles(tile)
     
     hero = Hero(0,0,hero_down) 
-
 # Create a function that can be called when a key pressing happens
     def on_key_press(e):
         if e.keycode == 83:  #down
-            hero.testBoxY += 60
+            hero.set_coordinatesY(60)
+            hero.set_image(hero_down)
         elif e.keycode == 87:   #up
-            hero.testBoxY -= 60
+            hero.set_coordinatesY(-60)
+            hero.set_image(hero_up)
         elif e.keycode == 65:     #left
-            hero.testBoxX -= 60
+            hero.set_coordinatesX(-60)
+            hero.set_image(hero_left)
         elif e.keycode == 68:   #right
-            hero.testBoxX += 60
+            hero.set_coordinatesX(60)
+            hero.set_image(hero_right)
         game.draw(canvas)
         hero.draw(canvas)
 

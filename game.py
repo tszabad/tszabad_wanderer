@@ -39,8 +39,21 @@ class Hero(Tile):
 
     def draw(self, canvas):
         canvas.create_image(self.testBoxX, self.testBoxY, anchor=NW, image = self.image)
+   
+    @property
+    def get_coordinates(self):
+        return self.testBoxX, self.testBoxY
 
     
+    def set_coordinatesX(self, x):
+        self.testBoxX += x
+
+    def set_coordinatesY(self, y):
+        self.testBoxY += y
+       
+    def set_image(self, image):
+        self.image = image
+
 
 
        
