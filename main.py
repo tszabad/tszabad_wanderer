@@ -1,6 +1,8 @@
 from tkinter import *
 
-from game import Game, Floor, Wall, Hero, Skeleton, Boss
+from game import Game
+from tiles import Floor, Wall
+from characters import Hero, Skeleton, Boss
 import matrix as m
       
 def main():
@@ -34,9 +36,12 @@ def main():
             else:
                 tile = Wall(i*60,j*60, wall)
                 game.add_tiles(tile)
-    
+
     skelet = Skeleton(9,7,skeleton)
-    hero = Hero(0,0,hero_down) 
+    skelet2 = Skeleton(0,9, skeleton)
+    skelet3 = Skeleton(6,0, skeleton)
+    skelets = [skelet, skelet2, skelet3]
+    hero = Hero(0,0,hero_down)       
     boss = Boss(6,3,boss)
 
 #  function that can be called when a key pressing happens
@@ -72,11 +77,19 @@ def main():
     def draw_canvas():
         game.draw(canvas)
         hero.draw_character(canvas)
-        skelet.draw_character(canvas)
+        for skel in skelets:
+            skel.draw_character(canvas)
         boss.draw_character(canvas)
-        
     draw_canvas()
     
+    #game stats
+    canvas2 = Canvas(root, width=600, height=30)
+    canvas2.create_rectangle(0, 0, 600, 30, fill = "grey")
+    text = f"Hero (Level: {hero.level}) HP: {hero.HP}/38 | DP: {hero.DP} | SP: {hero.SP}"
+    canvas_text = canvas2.create_text(10, 10, text=text, font=('freemono bold',11),anchor=NW)
+    canvas2.pack()
+   
+
 
     root.mainloop()
 
