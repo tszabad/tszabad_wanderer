@@ -7,12 +7,12 @@ To start the todo app, go to the directory of the main.py and type in the comman
 
 
  ***Commands:*** \
-	**w**  	    Go up \
-    **s**   	Go down \
-    **d**   	Go right \
-    **a**   	Go left \
-    **space**   Start a battle, push multiple time until the battle ends \
-    **-esc**    Quits the game \
+	**key: w**            Go up \
+    **key: s**            Go down \
+    **key: d**            Go right \
+    **key: a**            Go left \
+    **key: space**        Start a battle, push multiple time until the battle ends \
+    **key: esc**          Quits the game 
 
 
 ***How to play:*** \
