@@ -1,5 +1,4 @@
 
-
 class Tile():
     def __init__(self, testBoxX, testBoxY, image):
         self.testBoxX = testBoxX

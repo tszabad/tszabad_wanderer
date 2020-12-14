@@ -46,25 +46,34 @@ def main():
 
 #  function that can be called when a key pressing happens
     def on_key_press(e):
-        def coords():
-            x, y = hero.get_coordinates()
+        def coords(char):
+            x, y = char.get_coordinates()
             x, y = int(x/60), int(y/60)
             return x, y
-        if e.keycode == 83 and m.matrix[coords()[1]+1][coords()[0]] != 1 and coords()[1]<=9:  #down
+        if e.keycode == 83 and m.matrix[coords(hero)[1]+1][coords(hero)[0]] != 1 and coords(hero)[1]<=9:  #down
             hero.set_coordinatesY(60)
             hero.set_image(hero_down)
-        elif e.keycode == 87 and m.matrix[coords()[1]-1][coords()[0]] != 1 and coords()[1]>0:   #up
+        elif e.keycode == 87 and m.matrix[coords(hero)[1]-1][coords(hero)[0]] != 1 and coords(hero)[1]>0:   #up
             hero.set_coordinatesY(-60)
             hero.set_image(hero_up)
-        elif e.keycode == 65 and m.matrix[coords()[1]][coords()[0]-1] != 1 and coords()[0]>0:     #left
+        elif e.keycode == 65 and m.matrix[coords(hero)[1]][coords(hero)[0]-1] != 1 and coords(hero)[0]>0:     #left
             hero.set_coordinatesX(-60)
             hero.set_image(hero_left)
-        elif e.keycode == 68 and m.matrix[coords()[1]][coords()[0]+1] != 1 and coords()[0]<=9:   #right
+        elif e.keycode == 68 and m.matrix[coords(hero)[1]][coords(hero)[0]+1] != 1 and coords(hero)[0]<=9:   #right
             hero.set_coordinatesX(60)
             hero.set_image(hero_right)
-            #exit
-        elif e.keycode == 27:
+        elif e.keycode == 27:                #exit
             root.destroy()
+        elif e.keycode == 32 and coords(hero) == coords(boss):
+            hero.battle(boss)
+        elif e.keycode == 32 and coords(hero) == coords(skelet):
+            hero.battle(skelet)
+        elif e.keycode == 32 and coords(hero) == coords(skelet2):
+            hero.battle(skelet2)
+        elif e.keycode == 32 and coords(hero) == coords(skelet3):
+            hero.battle(skelet3)
+
+
         
         draw_canvas()
         

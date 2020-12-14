@@ -29,8 +29,21 @@ class Hero():
     def level_up(self):
         self.level += 1
 
-    def strike(self, monster):
-        pass
+    def strike(self, opponent):
+        SV = self.SP + random.randint(1,6)
+        if ((2 * random.randint(1,6)) + SV) > opponent.DP:
+            opponent.HP -= SV-opponent.DP
+
+    def battle(self, opponent):
+        while self.HP or opponent.HP >= 0:
+            self.strike(opponent)
+            opponent.strike(self)
+            
+        if self.isinstance(Hero) and opponent.HP < self.HP:
+            self.HP += random.randint(1,6)
+            self.level_up()
+            self.DP += random.randint(1,6)
+            self.SP += random.randint(1,6)
 
 
 class Skeleton(Hero):
