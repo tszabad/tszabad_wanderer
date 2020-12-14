@@ -35,15 +35,17 @@ class Hero():
             opponent.HP -= SV-opponent.DP
 
     def battle(self, opponent):
-        while self.HP or opponent.HP >= 0:
+        if self.HP and opponent.HP > 0:
             self.strike(opponent)
             opponent.strike(self)
-            
-        if self.isinstance(Hero) and opponent.HP < self.HP:
-            self.HP += random.randint(1,6)
-            self.level_up()
-            self.DP += random.randint(1,6)
-            self.SP += random.randint(1,6)
+            print(f"strike {opponent.HP}  {self.HP} {self.level}")
+        else:
+            if isinstance(self, Hero) and opponent.HP < self.HP:
+                self.HP += random.randint(1,6)
+                self.level_up()
+                self.DP += random.randint(1,6)
+                self.SP += random.randint(1,6)
+                print(f"battle   {self.HP} {self.level}")
 
 
 class Skeleton(Hero):

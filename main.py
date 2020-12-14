@@ -74,7 +74,7 @@ def main():
             hero.battle(skelet3)
 
 
-        
+        stats()
         draw_canvas()
         
 # Tell the canvas that we prepared a function that can deal with the key press events
@@ -93,12 +93,11 @@ def main():
     
     #game stats
     canvas2 = Canvas(root, width=600, height=30)
-    canvas2.create_rectangle(0, 0, 600, 30, fill = "grey")
-    text = f"Hero (Level: {hero.level}) HP: {hero.HP}/38 | DP: {hero.DP} | SP: {hero.SP}"
-    canvas_text = canvas2.create_text(10, 10, text=text, font=('freemono bold',11),anchor=NW)
-    canvas2.pack()
-   
-
+    def stats():
+        canvas2.create_rectangle(0, 0, 600, 30, fill = "grey")
+        text = f"Hero (Level: {hero.level}) HP: {hero.HP}/38 | DP: {hero.DP} | SP: {hero.SP}"
+        canvas_text = canvas2.create_text(10, 10, text=text, font=('freemono bold',11),anchor=NW)
+        canvas2.pack()
 
     root.mainloop()
 
