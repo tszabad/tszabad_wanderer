@@ -1,14 +1,14 @@
 
 class Tile():
-    def __init__(self, testBoxX, testBoxY, image):
-        self.testBoxX = testBoxX
-        self.testBoxY = testBoxY
+    def __init__(self, x, y, image):
+        self.x = x
+        self.y = y
         self.image = image
 
 class Floor(Tile):
-    def __init__(self, testBoxX, testBoxY,image):
-        super().__init__(testBoxX, testBoxY,image)
+    def __init__(self, x, y,image):
+        super().__init__(x, y,image)
 
 class Wall(Tile):
-    def __init__(self, testBoxX, testBoxY,image):
-        super().__init__(testBoxX, testBoxY,image)
+    def __init__(self, x, y,image):
+        super().__init__(x, y,image)

@@ -7,6 +7,7 @@ class Hero():
         self.y = y *60
         self.image = image
         self.HP = 20 + 3 * random.randint(1,6)
+        self.maxHP = 38
         self.DP = 2 * random.randint(1,6)
         self.SP = 5 + random.randint(1,6)
         self.level = 1
@@ -33,36 +34,29 @@ class Hero():
         self.HP += hp
         
     def strike(self, opponent):
-        SV = self.SP + random.randint(1,6)
-        if ((2 * random.randint(1,6)) + SV) > opponent.DP:
-            opponent.HP -= SV-opponent.DP
+        if isinstance(self, Hero):
+            SV = self.SP + random.randint(1,6)
+            if ((2 * random.randint(1,6)) + SV) > opponent.DP:
+                opponent.HP -= SV-opponent.DP
+        else:
+            SV = opponent.SV + random.randint(1,6)
+            if ((2 * random.randint(1,6)) + SV) > self.DP:
+                self.HP -= SV-self.DP
 
     def battle(self, opponent):
         if self.HP and opponent.HP > 0:
             self.strike(opponent)
-            print(f"strike opponent hp: {opponent.HP}  self hp: {self.HP} oppontent level: {opponent.level} self level: {self.level}")
             opponent.strike(self)
-            print(f"strike opponent hp: {opponent.HP}  self hp: {self.HP} oppontent level: {opponent.level} self level: {self.level}")
         else:
             if isinstance(self, Hero) and opponent.HP < self.HP:
-                opponent.set_coordinatesX(-600)
-                self.increase_HP(random.randint(1,6))
-                self.level_up()
+                self.maxHP += random.randint(1,6)
                 self.DP += random.randint(1,6)
                 self.SP += random.randint(1,6)
-                print(f"battle   self hp: {self.HP} self level: {self.level}")
+                return opponent
+            else:
+                print("hero died")
 
-                chance = random.random()
-                if chance <= 0.1:
-                    pass
-                elif 0.1 < chance <= 40:
-                    pass
-                elif chance > 0.5:
-                    pass
-
-            
-
-
+       
 class Skeleton(Hero):
     def __init__(self, x, y, image):
         super().__init__(x, y, image)
