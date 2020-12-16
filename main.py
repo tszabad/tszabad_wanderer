@@ -73,7 +73,7 @@ def main():
         elif e.keycode == 32 and coords(hero) == coords(skelet3):
             hero.battle(skelet3)
 
-
+        canvas.delete("all")
         stats()
         draw_canvas()
         
@@ -85,10 +85,10 @@ def main():
     canvas.focus_set()
     def draw_canvas():
         game.draw(canvas)
-        hero.draw_character(canvas)
         for skel in skelets:
             skel.draw_character(canvas)
         boss.draw_character(canvas)
+        hero.draw_character(canvas)
     draw_canvas()
     
     #game stats

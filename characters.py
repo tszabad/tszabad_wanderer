@@ -29,6 +29,9 @@ class Hero():
     def level_up(self):
         self.level += 1
 
+    def increase_HP(self, hp):
+        self.HP += hp
+        
     def strike(self, opponent):
         SV = self.SP + random.randint(1,6)
         if ((2 * random.randint(1,6)) + SV) > opponent.DP:
@@ -37,15 +40,27 @@ class Hero():
     def battle(self, opponent):
         if self.HP and opponent.HP > 0:
             self.strike(opponent)
+            print(f"strike opponent hp: {opponent.HP}  self hp: {self.HP} oppontent level: {opponent.level} self level: {self.level}")
             opponent.strike(self)
-            print(f"strike {opponent.HP}  {self.HP} {self.level}")
+            print(f"strike opponent hp: {opponent.HP}  self hp: {self.HP} oppontent level: {opponent.level} self level: {self.level}")
         else:
             if isinstance(self, Hero) and opponent.HP < self.HP:
-                self.HP += random.randint(1,6)
+                opponent.set_coordinatesX(-600)
+                self.increase_HP(random.randint(1,6))
                 self.level_up()
                 self.DP += random.randint(1,6)
                 self.SP += random.randint(1,6)
-                print(f"battle   {self.HP} {self.level}")
+                print(f"battle   self hp: {self.HP} self level: {self.level}")
+
+                chance = random.random()
+                if chance <= 0.1:
+                    pass
+                elif 0.1 < chance <= 40:
+                    pass
+                elif chance > 0.5:
+                    pass
+
+            
 
 
 class Skeleton(Hero):
