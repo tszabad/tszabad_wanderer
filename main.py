@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 from game import Game
 from characters import Hero, Skeleton, Boss
@@ -26,12 +27,17 @@ def main():
             game = Game(hero)
             print(game)
             hero.level_up()
+            chance = random.random()
+            if chance <= 0.1:
+                hero.HP = hero.maxHP
+            if 0.1 < chance <= 0.4:
+                hero.HP = hero.maxHP/3
+            if chance >=0.5:
+                hero.HP = hero.maxHP*0.1
         else:
             game = game
         return game
-    print(game)
-    
-    
+     
 
 #  function that can be called when a key pressing happens
     def on_key_press(e):

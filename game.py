@@ -9,6 +9,7 @@ class Game():
     def __init__(self, hero):
         self.hero = hero
         self.tiles = []
+        self.characters = []
         floor = PhotoImage(file="images/floor.png")
         wall = PhotoImage(file="images/wall.png")
         skeleton = PhotoImage(file="images/skeleton.png")
@@ -28,12 +29,23 @@ class Game():
                 else:
                     tile = Wall(i*60,j*60, wall)
                     self.add_tiles(tile)
-
-        skelet = Skeleton(9,7,skeleton)
-        skelet2 = Skeleton(0,9, skeleton)
-        skelet3 = Skeleton(6,0, skeleton)
-        boss = Boss(6,3,boss)
-        self.characters = [skelet, skelet2, skelet3, boss]
+        
+        count = 0
+        while count < random.randint(3,6):
+            i = random.randint(0,9)
+            j = random.randint(0,9)
+            if m.matrix[j][i] == 0:
+                skelet = Skeleton(i, j, skeleton)
+                self.characters.append(skelet)
+                count +=1
+        count2 = 0
+        while count2 < 1:
+            i = random.randint(0,9)
+            j = random.randint(0,9)
+            if m.matrix[j][i] == 0:
+                bos = Boss(i, j, boss)
+                self.characters.append(bos)
+                count2 +=1
 
     def draw(self, canvas):
         canvas.create_rectangle(0, 0, 600, 600)
