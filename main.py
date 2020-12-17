@@ -21,23 +21,8 @@ def main():
     
     hero = Hero(0,0,hero_down)
     game = Game(hero)
-
-    def new_level(game):
-        if len(game.characters) == 0:
-            game = Game(hero)
-            print(game)
-            hero.level_up()
-            chance = random.random()
-            if chance <= 0.1:
-                hero.HP = hero.maxHP
-            if 0.1 < chance <= 0.4:
-                hero.HP = hero.maxHP/3
-            if chance >=0.5:
-                hero.HP = hero.maxHP*0.1
-        else:
-            game = game
-        return game
      
+    
 
 #  function that can be called when a key pressing happens
     def on_key_press(e):
@@ -71,6 +56,8 @@ def main():
                 if opponent:
                     game.remove_character(opponent)
                     new_level(game)
+                    
+               
                   
                
         canvas.delete("all")
@@ -98,6 +85,24 @@ def main():
         canvas_text = canvas2.create_text(10, 10, text=text, font=('freemono bold',11),anchor=NW)
         canvas2.pack()
 
+    def new_level(game):
+        if len(game.characters) < 1:
+            game = Game(hero)
+            print(game)
+            hero.level_up()
+            chance = random.random()
+            if chance <= 0.1:
+                hero.set_HP = hero.maxHP
+            if 0.1 < chance <= 0.4:
+                hero.set_HP = hero.maxHP/3
+            if chance >=0.5:
+                hero.set_HP = hero.maxHP*0.1
+        else:
+            game = game
+        return game
+
+    
+    print(game)
     root.mainloop()
 
 

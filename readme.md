@@ -16,4 +16,4 @@ To start the todo app, go to the directory of the main.py and type in the comman
 
 
 ***How to play:*** \
-After starting the game find a skeleton, go to the tile of the skeleton and press space multiple time until the battle ends. If you win the battle against the first skeleton, your level will be incremented by 1, and the next skeleton to fight against will be more power-full. Go and find all skeleton and the boss and start a battle against all of them to win the game. Have a nice time using app.
+After starting the game find a skeleton or a boss, go to the tile of the enemy and press space multiple time until the monster dies. If you win the battle against the first monster, go and find all monsters and start a battle against all of them to win the game. If you killed all monsters a new level starts, with powered up monsters. 

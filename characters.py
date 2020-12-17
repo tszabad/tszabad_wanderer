@@ -32,6 +32,9 @@ class Hero():
 
     def increase_HP(self, hp):
         self.HP += hp
+
+    def set_HP(self, hp):
+        self.HP = hp
         
     def strike(self, opponent):
         if isinstance(self, Hero):
@@ -55,6 +58,7 @@ class Hero():
                 return opponent
             else:
                 print("hero died")
+                
 
        
 class Skeleton(Hero):
