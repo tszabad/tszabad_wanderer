@@ -19,8 +19,6 @@ def main():
     #instasiating objects
     hero = Hero(0,0,hero_down)
     game = Game(hero)
-    # changing object name to be able to reintialise it
-    game1 = game
    
 #  function that can be called when a key pressing happens
     def on_key_press(e):
@@ -48,23 +46,21 @@ def main():
             root.destroy()
         #battle
         opponent = False
-        for char in game1.get_characters():
+        for char in game.get_characters():
             if e.keycode == 32 and coords(hero) == coords(char):
                 opponent = hero.battle(char)
         if opponent:
-            game1.remove_character(opponent)
+            game.remove_character(opponent)
         #initialise new game object and level up characters
-        if game1.get_char_length() < 1:
+        if game.get_char_length() < 1:
             new_level()
-            game = Game(hero)
-        else:
-            game = game1
+            game.create_monsters()
+            game.level_up_chars(hero.level)
+        
         canvas.delete("all")
         stats()    
         draw_canvas()
 
-    
-    
 # binding key press events
     canvas.bind("<KeyPress>", on_key_press)
     canvas.pack()
@@ -95,10 +91,8 @@ def main():
             hero.set_HP = hero.maxHP/3
         if chance >=0.5:
             hero.set_HP = hero.maxHP*0.1
-    
 
     root.mainloop()
-
 
 if __name__ == '__main__':
     main()

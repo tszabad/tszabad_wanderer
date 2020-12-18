@@ -29,6 +29,9 @@ class Hero():
 
     def level_up(self):
         self.level += 1
+    
+    def set_level(self, level):
+        self.level = level
 
     def increase_HP(self, hp):
         self.HP += hp
@@ -57,17 +60,13 @@ class Hero():
                 self.SP += random.randint(1,6)
                 return opponent
             else:
-                print("hero died")
-                
-
-       
+                print("hero died")   
 class Skeleton(Hero):
     def __init__(self, x, y, image):
         super().__init__(x, y, image)
         self.HP = 2 * self.level * random.randint(1,6)
         self.DP = self.level / 2 * random.randint(1,6)
         self.SP = self.level * random.randint(1,6)
-      
 class Boss(Hero):
     def __init__(self, x, y, image):
         super().__init__(x, y, image)

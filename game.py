@@ -12,8 +12,7 @@ class Game():
         self.characters = []
         floor = PhotoImage(file="images/floor.png")
         wall = PhotoImage(file="images/wall.png")
-        skeleton = PhotoImage(file="images/skeleton.png")
-        boss = PhotoImage(file="images/boss.png")
+        
         #creating the playground
         for i in range(0,10):
             if m.matrix[0][i] == 0:
@@ -29,8 +28,12 @@ class Game():
                 else:
                     tile = Wall(i*60,j*60, wall)
                     self.add_tiles(tile)
+        self.create_monsters()
         
         #creating random monsters
+    def create_monsters(self):  
+        skeleton = PhotoImage(file="images/skeleton.png")
+        boss = PhotoImage(file="images/boss.png") 
         count = 0
         while count < random.randint(3,6):
             i = random.randint(0,9)
@@ -70,6 +73,10 @@ class Game():
 
     def get_char_length(self):
         return len(self.characters)
+
+    def level_up_chars(self, amount):
+        for i in self.characters:
+            i.set_level(amount)
 
 
 
