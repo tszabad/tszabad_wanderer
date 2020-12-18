@@ -14,7 +14,7 @@ class Game():
         wall = PhotoImage(file="images/wall.png")
         skeleton = PhotoImage(file="images/skeleton.png")
         boss = PhotoImage(file="images/boss.png")
-
+        #creating the playground
         for i in range(0,10):
             if m.matrix[0][i] == 0:
                 tile = Floor(i*60,0, floor)
@@ -30,6 +30,7 @@ class Game():
                     tile = Wall(i*60,j*60, wall)
                     self.add_tiles(tile)
         
+        #creating random monsters
         count = 0
         while count < random.randint(3,6):
             i = random.randint(0,9)
@@ -38,6 +39,7 @@ class Game():
                 skelet = Skeleton(i, j, skeleton)
                 self.characters.append(skelet)
                 count +=1
+        #creating random boss
         count2 = 0
         while count2 < 1:
             i = random.randint(0,9)
@@ -65,6 +67,10 @@ class Game():
 
     def get_characters(self):
         return self.characters
+
+    def get_char_length(self):
+        return len(self.characters)
+
 
 
     

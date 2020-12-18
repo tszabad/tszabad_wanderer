@@ -16,14 +16,12 @@ def main():
     hero_left = PhotoImage(file="images/hero-left.png")
     hero_right = PhotoImage(file="images/hero-right.png")
     
-    
     #instasiating objects
-    
     hero = Hero(0,0,hero_down)
     game = Game(hero)
-     
-    
-
+    # changing object name to be able to reintialise it
+    game1 = game
+   
 #  function that can be called when a key pressing happens
     def on_key_press(e):
         def coords(char):
@@ -45,38 +43,41 @@ def main():
                 hero.set_image(hero_right)
         except(IndexError):
             pass
-         #exit
+        #exit
         if e.keycode == 27:               
             root.destroy()
         #battle
         opponent = False
-        for char in game.get_characters():
+        for char in game1.get_characters():
             if e.keycode == 32 and coords(hero) == coords(char):
                 opponent = hero.battle(char)
-                if opponent:
-                    game.remove_character(opponent)
-                    new_level(game)
-                    
-               
-                  
-               
+        if opponent:
+            game1.remove_character(opponent)
+        #initialise new game object and level up characters
+        if game1.get_char_length() < 1:
+            new_level()
+            game = Game(hero)
+        else:
+            game = game1
         canvas.delete("all")
         stats()    
         draw_canvas()
-        
-        
+
+    
+    
 # binding key press events
     canvas.bind("<KeyPress>", on_key_press)
     canvas.pack()
-        
     
 # draw the canvas
     def draw_canvas():
         game.draw(canvas)
         game.draw_character(canvas)
         hero.draw_character(canvas)
+        
     draw_canvas()
     canvas.focus_set()
+
 #game stats
     canvas2 = Canvas(root, width=600, height=30)
     def stats():
@@ -84,25 +85,18 @@ def main():
         text = f"Hero (Level: {hero.level}) HP: {int(hero.HP)}/38 | DP: {hero.DP} | SP: {hero.SP}"
         canvas_text = canvas2.create_text(10, 10, text=text, font=('freemono bold',11),anchor=NW)
         canvas2.pack()
-
-    def new_level(game):
-        if len(game.characters) < 1:
-            game = Game(hero)
-            print(game)
-            hero.level_up()
-            chance = random.random()
-            if chance <= 0.1:
-                hero.set_HP = hero.maxHP
-            if 0.1 < chance <= 0.4:
-                hero.set_HP = hero.maxHP/3
-            if chance >=0.5:
-                hero.set_HP = hero.maxHP*0.1
-        else:
-            game = game
-        return game
-
+#level up function
+    def new_level():
+        hero.level_up()
+        chance = random.random()
+        if chance <= 0.1:
+            hero.set_HP = hero.maxHP
+        if 0.1 < chance <= 0.4:
+            hero.set_HP = hero.maxHP/3
+        if chance >=0.5:
+            hero.set_HP = hero.maxHP*0.1
     
-    print(game)
+
     root.mainloop()
 
 
