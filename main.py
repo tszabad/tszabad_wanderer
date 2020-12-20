@@ -56,6 +56,9 @@ def main():
             new_level()
             game.create_monsters()
             game.level_up_chars(hero.level)
+            hero.x = 0
+            hero.y = 0
+            hero.set_image(hero_down)
         
         canvas.delete("all")
         stats()    

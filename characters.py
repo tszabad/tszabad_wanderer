@@ -1,15 +1,16 @@
-import random
 from tkinter import *
+
+from utils import Utils
 
 class Hero():
     def __init__(self, x, y, image):
         self.x = x *60
         self.y = y *60
         self.image = image
-        self.HP = 20 + 3 * random.randint(1,6)
+        self.HP = 20 + 3 * Utils.get_random()
         self.maxHP = 38
-        self.DP = 2 * random.randint(1,6)
-        self.SP = 5 + random.randint(1,6)
+        self.DP = 2 * Utils.get_random()
+        self.SP = 5 + Utils.get_random()
         self.level = 1
 
     def draw_character(self, canvas):
@@ -41,12 +42,12 @@ class Hero():
         
     def strike(self, opponent):
         if isinstance(self, Hero):
-            SV = self.SP + random.randint(1,6)
-            if ((2 * random.randint(1,6)) + SV) > opponent.DP:
+            SV = self.SP + Utils.get_random()
+            if ((2 * Utils.get_random()) + SV) > opponent.DP:
                 opponent.HP -= SV-opponent.DP
         else:
-            SV = opponent.SV + random.randint(1,6)
-            if ((2 * random.randint(1,6)) + SV) > self.DP:
+            SV = opponent.SV + Utils.get_random()
+            if ((2 * Utils.get_random()) + SV) > self.DP:
                 self.HP -= SV-self.DP
 
     def battle(self, opponent):
@@ -55,22 +56,22 @@ class Hero():
             opponent.strike(self)
         else:
             if isinstance(self, Hero) and opponent.HP < self.HP:
-                self.maxHP += random.randint(1,6)
-                self.DP += random.randint(1,6)
-                self.SP += random.randint(1,6)
+                self.maxHP += Utils.get_random()
+                self.DP += Utils.get_random()
+                self.SP += Utils.get_random()
                 return opponent
             else:
                 print("hero died")   
 class Skeleton(Hero):
     def __init__(self, x, y, image):
         super().__init__(x, y, image)
-        self.HP = 2 * self.level * random.randint(1,6)
-        self.DP = self.level / 2 * random.randint(1,6)
-        self.SP = self.level * random.randint(1,6)
+        self.HP = 2 * self.level * Utils.get_random()
+        self.DP = self.level / 2 * Utils.get_random()
+        self.SP = self.level * Utils.get_random()
 class Boss(Hero):
     def __init__(self, x, y, image):
         super().__init__(x, y, image)
-        self.HP = 2 * self.level * random.randint(1,6) + random.randint(1,6)
-        self.DP = self.level / 2 * random.randint(1,6) +random.randint(1,6)/2
-        self.SP = self.level * random.randint(1,6) + self.level
+        self.HP = 2 * self.level * Utils.get_random() + Utils.get_random()
+        self.DP = self.level / 2 * Utils.get_random() +Utils.get_random()/2
+        self.SP = self.level * Utils.get_random() + self.level
       
