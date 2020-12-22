@@ -3,7 +3,7 @@ import random
 
 from tiles import Floor, Wall
 from characters import Hero, Boss, Skeleton
-import matrix as m
+from utils import Utils as m
 
 class Game():
     def __init__(self, hero):

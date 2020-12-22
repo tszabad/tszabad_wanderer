@@ -3,8 +3,9 @@ import random
 
 from game import Game
 from characters import Hero, Skeleton, Boss
-import matrix as m
-      
+from utils import Utils
+
+
 def main():
     root = Tk()
     root.title("Tom's wanderer game")
@@ -21,22 +22,23 @@ def main():
     game = Game(hero)
    
 #  function that can be called when a key pressing happens
+    m = Utils.matrix
     def on_key_press(e):
         def coords(char):
             x, y = char.get_coordinates()
             x, y = int(x/60), int(y/60)
             return x, y
         try:
-            if e.keycode == 83 and m.matrix[coords(hero)[1]+1][coords(hero)[0]] != 1 and coords(hero)[1]<=9:  #down
+            if e.keycode == 83 and m[coords(hero)[1]+1][coords(hero)[0]] != 1 and coords(hero)[1]<=9:  #down
                 hero.set_coordinatesY(60)
                 hero.set_image(hero_down)
-            elif e.keycode == 87 and m.matrix[coords(hero)[1]-1][coords(hero)[0]] != 1 and coords(hero)[1]>0:   #up
+            elif e.keycode == 87 and m[coords(hero)[1]-1][coords(hero)[0]] != 1 and coords(hero)[1]>0:   #up
                 hero.set_coordinatesY(-60)
                 hero.set_image(hero_up)
-            elif e.keycode == 65 and m.matrix[coords(hero)[1]][coords(hero)[0]-1] != 1 and coords(hero)[0]>0:     #left
+            elif e.keycode == 65 and m[coords(hero)[1]][coords(hero)[0]-1] != 1 and coords(hero)[0]>0:     #left
                 hero.set_coordinatesX(-60)
                 hero.set_image(hero_left)
-            elif e.keycode == 68 and m.matrix[coords(hero)[1]][coords(hero)[0]+1] != 1 and coords(hero)[0]<=9:   #right
+            elif e.keycode == 68 and m[coords(hero)[1]][coords(hero)[0]+1] != 1 and coords(hero)[0]<=9:   #right
                 hero.set_coordinatesX(60)
                 hero.set_image(hero_right)
         except(IndexError):
